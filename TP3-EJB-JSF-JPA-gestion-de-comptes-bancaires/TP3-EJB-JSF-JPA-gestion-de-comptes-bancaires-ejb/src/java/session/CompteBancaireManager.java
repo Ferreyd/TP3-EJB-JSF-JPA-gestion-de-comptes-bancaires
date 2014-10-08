@@ -39,6 +39,15 @@ public class CompteBancaireManager {
     private void creerCompte(CompteBancaire compteBancaire) {
         em.persist(compteBancaire);
     }
+    
+   /**
+    * Ajoute un compte bancaire dans la base de données
+    * @param nom Nom du titulaire du compte
+    * @param montant Montant à mettre sur le compte
+    */
+    private void creerCompte(String nom, long montant) {
+        em.persist(new CompteBancaire(nom, montant));
+    }
 
     /**
      * Retourne une <List> de tout les comptes bancaires
