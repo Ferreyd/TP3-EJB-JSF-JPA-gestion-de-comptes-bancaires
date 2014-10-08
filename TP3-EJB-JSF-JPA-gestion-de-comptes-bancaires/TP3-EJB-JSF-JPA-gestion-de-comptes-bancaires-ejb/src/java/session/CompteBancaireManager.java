@@ -57,5 +57,10 @@ public class CompteBancaireManager {
         Query query = em.createQuery("select c from CompteBancaire c");
         return query.getResultList();
     }
+    
+    public CompteBancaire getCompte(long id)
+    {
+        return em.find(CompteBancaire.class, id);
+    }
 }
 

@@ -19,15 +19,36 @@ import session.CompteBancaireManager;
  */
 @Named(value = "comptesMBean")
 @ViewScoped
-public class ComptesMBean implements Serializable{
+public class ComptesMBean implements Serializable {
+
     @EJB
     private CompteBancaireManager compteBancaireManager;
-    
+
     List<CompteBancaire> comptes;
-    
+
     /**
      * Creates a new instance of ComptesMBean
      */
+    private CompteBancaire compte;
+
+    /**
+     * Get the value of compte
+     *
+     * @return the value of compte
+     */
+    public CompteBancaire getCompte() {
+        return compte;
+    }
+
+    /**
+     * Set the value of compte
+     *
+     * @param compte new value of compte
+     */
+    public void setCompte(CompteBancaire compte) {
+        this.compte = compte;
+    }
+
     public ComptesMBean() {
     }
 
@@ -36,13 +57,17 @@ public class ComptesMBean implements Serializable{
         comptes = compteBancaireManager.getAllComptes();
         return comptes;
     }
+
+    public CompteBancaireManager getCompteBancaireManager() {
+        return compteBancaireManager;
+    }
+
+    public void setComptes(List<CompteBancaire> comptes) {
+        this.comptes = comptes;
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
+    public void setCompteBancaireManager(CompteBancaireManager compteBancaireManager) {
+        this.compteBancaireManager = compteBancaireManager;
+    }
+
 }
