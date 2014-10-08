@@ -6,6 +6,7 @@
 package managedbeans;
 
 import entity.CompteBancaire;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -18,7 +19,7 @@ import session.CompteBancaireManager;
  */
 @Named(value = "comptesMBean")
 @ViewScoped
-public class ComptesMBean {
+public class ComptesMBean implements Serializable{
     @EJB
     private CompteBancaireManager compteBancaireManager;
     
@@ -29,6 +30,15 @@ public class ComptesMBean {
      */
     public ComptesMBean() {
     }
+
+    public List<CompteBancaire> getComptes() {
+        System.out.println("### DANS GET COMPTES ###");
+        comptes = compteBancaireManager.getAllComptes();
+        return comptes;
+    }
+    
+    
+    
     
     
     
