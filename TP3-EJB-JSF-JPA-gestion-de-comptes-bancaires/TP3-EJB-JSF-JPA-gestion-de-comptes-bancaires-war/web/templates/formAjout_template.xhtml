@@ -5,20 +5,20 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-    <ui:define name="content">
 
+    <ui:define name="content">
         <f:view>
+
 
             <h:form>
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Nom:" for="nom" />
-                    <p:inputText id="nom" value="#{compteDetailMBean.compte.nom}" title="Nom" />
+                    <p:inputText id="nom" value="#{compteDetailMBean.nom}" title="Nom" />
                     <p:outputLabel value="Montant:" for="montant" />
-                    <p:inputText id="montant" value="#{compteDetailMBean.compte.montant}" title="Montant" />
-                    <p:outputLabel value="Id:" for="id" />
-                    <p:inputText id="id" value="#{compteDetailMBean.compte.id}" title="Id" />
+                    <p:inputText id="montant" value="#{compteDetailMBean.montant}" title="Montant" />
                 </p:panelGrid>
+                <p:commandButton value="Creer client" action="#{compteDetailMBean.creerCompte()}"/>
             </h:form>
         </f:view>
 

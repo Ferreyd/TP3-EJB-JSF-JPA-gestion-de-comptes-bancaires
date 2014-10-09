@@ -22,7 +22,10 @@ import session.CompteBancaireManager;
 public class ComptesMBean implements Serializable {
 
     private int idCompte;
-    
+
+    private CompteBancaire TransfertCompte1;
+    private CompteBancaire TransfertCompte2;
+
     @EJB
     private CompteBancaireManager compteBancaireManager;
 
@@ -33,6 +36,32 @@ public class ComptesMBean implements Serializable {
      */
     private CompteBancaire compte;
 
+    private int montantTransfert;
+
+    public CompteBancaire getTransfertCompte1() {
+        return TransfertCompte1;
+    }
+
+    public void setTransfertCompte1(CompteBancaire TransfertCompte1) {
+        this.TransfertCompte1 = TransfertCompte1;
+    }
+
+    public CompteBancaire getTransfertCompte2() {
+        return TransfertCompte2;
+    }
+
+    public void setTransfertCompte2(CompteBancaire TransfertCompte2) {
+        this.TransfertCompte2 = TransfertCompte2;
+    }
+
+    public int getMontantTransfert() {
+        return montantTransfert;
+    }
+
+    public void setMontantTransfert(int montantTransfert) {
+        this.montantTransfert = montantTransfert;
+    }
+
     /**
      * Get the value of compte
      *
@@ -41,7 +70,6 @@ public class ComptesMBean implements Serializable {
     public CompteBancaire getCompte() {
         return compte;
     }
-
 
     /**
      * Set the value of compte
@@ -79,12 +107,6 @@ public class ComptesMBean implements Serializable {
         this.compteBancaireManager = compteBancaireManager;
     }
 
-    public String update() {
-        System.out.println("###UPDATE###");
-        compte = compteBancaireManager.update(compte);
-        return "index";
-    }
-
     public String creerCompte(CompteBancaire compteBancaire) {
         System.out.println("### CREATION COMPTE ###");
         compteBancaireManager.creerCompte(compteBancaire);
@@ -92,7 +114,7 @@ public class ComptesMBean implements Serializable {
     }
 
     public String afficheDetails(Long id) {
-        return "formAjout?idCompte=" + id;
+        return "detail?idCompte=" + id;
     }
 
     public int getIdCompte() {
@@ -102,7 +124,11 @@ public class ComptesMBean implements Serializable {
     public void setIdCompte(int idCompte) {
         this.idCompte = idCompte;
     }
-    
-    
+
+    public String transfert() {
+        System.out.println("### TRANSFERT DE " + TransfertCompte1.toString() + " A " + TransfertCompte2.toString() + " POUR " + montantTransfert);
+        compteBancaireManager.transfert(this.TransfertCompte1.getId(), this.TransfertCompte2.getId(), this.montantTransfert);
+        return "index";
+    }
 
 }

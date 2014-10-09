@@ -1,10 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./default_template.xhtml">
+                template="./default_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        content
+        <h1>Transfert d'argents</h1>
+        <f:view>
+            <h1><h:outputText value="Create/Edit"/></h1>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:selectOneMenu value="#{comptesMBean.transfertCompte1}">
+                        <f:selectItems value="#{comptesMBean.comptes}" var="compteEmeteur" itemLabel="#{compteEmeteur.nom}" itemValue="#{compteEmeteur}"/>
+                    </h:selectOneMenu>
+                    <h:selectOneMenu value="#{comptesMBean.transfertCompte2}">
+                        <f:selectItems value="#{comptesMBean.comptes}" var="CompteRecepteur" itemLabel="#{CompteRecepteur.nom}" itemValue="#{CompteRecepteur}"/>
+                    </h:selectOneMenu>
+                    <p:outputLabel value="Montant:" for="montant" />
+                    <p:inputText id="montant" value="#{comptesMBean.montantTransfert}" title="Montant" />
+                </h:panelGrid>
+                <p:commandButton value="Transferer" action="#{comptesMBean.transfert()}"/>
+            </h:form>
+        </f:view>
     </ui:define>
-
 </ui:composition>

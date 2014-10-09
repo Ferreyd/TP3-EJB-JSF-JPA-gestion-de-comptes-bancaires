@@ -67,4 +67,17 @@ public class CompteBancaireManager {
     public CompteBancaire update(CompteBancaire compteBancaire) {
         return em.merge(compteBancaire);
     }
+    
+    public void SupprimerCompte(CompteBancaire compteBancaire)
+    {
+        em.remove(compteBancaire);
+    }
+    
+    public void transfert(Long id1, Long id2, int montant)
+    {
+        CompteBancaire cb1 = em.find(CompteBancaire.class, id1);
+        CompteBancaire cb2 = em.find(CompteBancaire.class, id2);
+        cb1.retirerTransfert(montant);
+        cb2.deposer(montant);
+    }
 }

@@ -6,10 +6,12 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.primefaces.model.LazyDataModel;
 
 /**
  *
@@ -29,7 +31,7 @@ public class CompteBancaire implements Serializable {
 
     public CompteBancaire() {
     }
-    
+
     public CompteBancaire(String nom, long solde) {
         this.nom = nom;
         this.solde = solde;
@@ -105,12 +107,31 @@ public class CompteBancaire implements Serializable {
     }
 
     public void deposer(int montant) {
+        System.out.println("### DEPOSER  = " + montant + "###");
+        System.out.println("### ANCIEN SOLDE = " + solde + " ###");
         solde += montant;
+        System.out.println("### NOUVEAU SOLDE = " + solde + " ###\n\n");
     }
 
     public int retirer(int montant) {
+        System.out.println("### RETIRER  = " + montant + "###");
+        System.out.println("### ANCIEN SOLDE = " + solde + " ###");
         if (montant < solde) {
-            solde -= montant;
+            solde += montant;
+            System.out.println("### NOUVEAU SOLDE = " + solde + " ###\n\n");
+            return montant;
+        } else {
+            return 0;
+        }
+
+    }
+
+    public int retirerTransfert(int montant) {
+        System.out.println("### RETIRER  = " + montant + "###");
+        System.out.println("### ANCIEN SOLDE = " + solde + " ###");
+        if (montant < solde) {
+            solde += montant;
+            System.out.println("### NOUVEAU SOLDE = " + solde + " ###\n\n");
             return montant;
         } else {
             return 0;

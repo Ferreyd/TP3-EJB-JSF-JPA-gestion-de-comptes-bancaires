@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./default_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+
+        <f:view>
+
+            <h:form>
+                <h1><h:outputText value="Informations sur le compte"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Nom:" for="nom" />
+                    <p:inputText id="nom" value="#{compteDetailMBean.compte.nom}" title="Nom" />
+                    <p:outputLabel value="Montant:" for="montant" />
+                    <p:inputText id="montant" value="#{compteDetailMBean.compte.montant}" title="Montant" />
+                    <p:outputLabel value="Id:" for="id" />
+                    <p:inputText id="id" value="#{compteDetailMBean.compte.id}" title="Id" />
+                    <p:commandButton value ="Modifier" action="#{compteDetailMBean.update()}"/>
+                </p:panelGrid>
+            </h:form>
+            <h:form>
+                <h1>Ajouter ou retirer de l'argent</h1>
+                <h4>Rappel : le solde est de : #{compteDetailMBean.compte.montant} €</h4>
+                <p:outputLabel value="modifSolde" for="modifSolde" />
+                <p:inputText id="modifSolde" value="#{compteDetailMBean.modifSolde}" title="modifSolde" />
+                <p:commandButton value ="Modifier" action="#{compteDetailMBean.modifSolde()}"/>
+            </h:form>
+        </f:view>
+        <p:commandButton value="Supprimer Compte" action="#{compteDetailMBean.supprimer()}"/>
+    </ui:define>
+
+</ui:composition>
