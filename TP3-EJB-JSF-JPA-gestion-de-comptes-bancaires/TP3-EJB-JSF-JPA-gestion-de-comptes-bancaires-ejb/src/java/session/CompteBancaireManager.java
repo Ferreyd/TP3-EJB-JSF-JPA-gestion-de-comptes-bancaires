@@ -36,31 +36,35 @@ public class CompteBancaireManager {
      *
      * @param compteBancaire le compte bancaire à ajouter
      */
-    private void creerCompte(CompteBancaire compteBancaire) {
+    public void creerCompte(CompteBancaire compteBancaire) {
         em.persist(compteBancaire);
     }
-    
-   /**
-    * Ajoute un compte bancaire dans la base de données
-    * @param nom Nom du titulaire du compte
-    * @param montant Montant à mettre sur le compte
-    */
-    private void creerCompte(String nom, long montant) {
+
+    /**
+     * Ajoute un compte bancaire dans la base de données
+     *
+     * @param nom Nom du titulaire du compte
+     * @param montant Montant à mettre sur le compte
+     */
+    public void creerCompte(String nom, long montant) {
         em.persist(new CompteBancaire(nom, montant));
     }
 
     /**
      * Retourne une <List> de tout les comptes bancaires
+     *
      * @return une <List> de tout les comptes bancaires
      */
     public List<CompteBancaire> getAllComptes() {
         Query query = em.createQuery("select c from CompteBancaire c");
         return query.getResultList();
     }
-    
-    public CompteBancaire getCompte(long id)
-    {
+
+    public CompteBancaire getCompte(long id) {
         return em.find(CompteBancaire.class, id);
     }
-}
 
+    public CompteBancaire update(CompteBancaire compteBancaire) {
+        return em.merge(compteBancaire);
+    }
+}

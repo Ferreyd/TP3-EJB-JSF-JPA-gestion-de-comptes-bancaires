@@ -21,6 +21,8 @@ import session.CompteBancaireManager;
 @ViewScoped
 public class ComptesMBean implements Serializable {
 
+    private int idCompte;
+    
     @EJB
     private CompteBancaireManager compteBancaireManager;
 
@@ -39,6 +41,7 @@ public class ComptesMBean implements Serializable {
     public CompteBancaire getCompte() {
         return compte;
     }
+
 
     /**
      * Set the value of compte
@@ -87,5 +90,19 @@ public class ComptesMBean implements Serializable {
         compteBancaireManager.creerCompte(compteBancaire);
         return "index";
     }
+
+    public String afficheDetails(Long id) {
+        return "formAjout?idCompte=" + id;
+    }
+
+    public int getIdCompte() {
+        return idCompte;
+    }
+
+    public void setIdCompte(int idCompte) {
+        this.idCompte = idCompte;
+    }
+    
+    
 
 }
