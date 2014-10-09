@@ -58,6 +58,12 @@ public class ComptesMBean implements Serializable {
         return comptes;
     }
 
+    public List<CompteBancaire> getComptes(int start, int nombreDeComptes) {
+        System.out.println("### DANS GET COMPTES ###");
+        comptes = compteBancaireManager.getAllComptes();
+        return comptes;
+    }
+
     public CompteBancaireManager getCompteBancaireManager() {
         return compteBancaireManager;
     }
@@ -65,9 +71,21 @@ public class ComptesMBean implements Serializable {
     public void setComptes(List<CompteBancaire> comptes) {
         this.comptes = comptes;
     }
-    
+
     public void setCompteBancaireManager(CompteBancaireManager compteBancaireManager) {
         this.compteBancaireManager = compteBancaireManager;
+    }
+
+    public String update() {
+        System.out.println("###UPDATE###");
+        compte = compteBancaireManager.update(compte);
+        return "index";
+    }
+
+    public String creerCompte(CompteBancaire compteBancaire) {
+        System.out.println("### CREATION COMPTE ###");
+        compteBancaireManager.creerCompte(compteBancaire);
+        return "index";
     }
 
 }
