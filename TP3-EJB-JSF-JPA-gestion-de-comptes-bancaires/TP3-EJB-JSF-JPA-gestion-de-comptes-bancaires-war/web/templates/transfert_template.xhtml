@@ -9,14 +9,16 @@
     <ui:define name="content">
         <h1>Transfert d'argents</h1>
         <f:view>
-            <h1><h:outputText value="Create/Edit"/></h1>
+
+
             <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <h:selectOneMenu value="#{comptesMBean.transfertCompte1}">
-                        <f:selectItems value="#{comptesMBean.comptes}" var="compteEmeteur" itemLabel="#{compteEmeteur.nom}" itemValue="#{compteEmeteur}"/>
+                        <f:selectItems value="#{comptesMBean.comptes}" var="compteEmeteur" itemLabel="#{compteEmeteur.nom}" itemValue="#{compteEmeteur.id}"/>
                     </h:selectOneMenu>
                     <h:selectOneMenu value="#{comptesMBean.transfertCompte2}">
-                        <f:selectItems value="#{comptesMBean.comptes}" var="CompteRecepteur" itemLabel="#{CompteRecepteur.nom}" itemValue="#{CompteRecepteur}"/>
+                        <f:selectItems value="#{comptesMBean.comptes}" var="CompteRecepteur" itemLabel="#{CompteRecepteur.nom}" itemValue="#{CompteRecepteur.id}"/>
                     </h:selectOneMenu>
                     <p:outputLabel value="Montant:" for="montant" />
                     <p:inputText id="montant" value="#{comptesMBean.montantTransfert}" title="Montant" />
@@ -24,5 +26,7 @@
                 <p:commandButton value="Transferer" action="#{comptesMBean.transfert()}"/>
             </h:form>
         </f:view>
+
     </ui:define>
+
 </ui:composition>

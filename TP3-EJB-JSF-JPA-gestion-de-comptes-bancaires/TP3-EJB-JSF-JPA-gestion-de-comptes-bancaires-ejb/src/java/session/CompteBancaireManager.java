@@ -70,7 +70,8 @@ public class CompteBancaireManager {
     
     public void SupprimerCompte(CompteBancaire compteBancaire)
     {
-        em.remove(compteBancaire);
+        
+        em.remove(em.find(CompteBancaire.class, compteBancaire.getId()));
     }
     
     public void transfert(Long id1, Long id2, int montant)
